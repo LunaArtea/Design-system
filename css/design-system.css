@@ -1,0 +1,401 @@
+/* ============================================================
+   DESIGN SYSTEM CSS — Monitor Card Design System (SmartFlow)
+   Tokens, variables y estilos base de todos los componentes
+   ============================================================ */
+
+/* ── Tokens globales ── */
+:root {
+  /* Prefijo VSM */
+  --vsm-bg: #f0f4f8;
+  --vsm-card-radius: 12px;
+  --vsm-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --vsm-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --vsm-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --vsm-transition: 0.25s ease;
+  --vsm-text-primary: #1e293b;
+  --vsm-text-secondary: #64748b;
+  --vsm-border: #e2e8f0;
+
+  /* Prefijo HMC */
+  --hmc-bg: #f0f4f8;
+  --hmc-card-radius: 12px;
+  --hmc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --hmc-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --hmc-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --hmc-transition: 0.25s ease;
+  --hmc-text-primary: #1e293b;
+  --hmc-text-secondary: #64748b;
+  --hmc-border: #e2e8f0;
+
+  /* Colores de estado */
+  --color-active: #16a34a;
+  --color-warning: #eab308;
+  --color-danger: #ef4444;
+  --color-inactive: #64748b;
+  --color-disconnected: #94a3b8;
+  --color-maintenance: #f97316;
+
+  /* Severidades de alerta */
+  --severity-2: #ef4444;
+  --severity-1: #eab308;
+  --severity-0: #22c55e;
+
+  /* Tipografía */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.625rem;   /* 10px */
+  --font-size-sm: 0.6875rem;  /* 11px */
+  --font-size-base: 0.75rem;  /* 12px */
+  --font-size-md: 0.875rem;   /* 14px */
+  --font-size-lg: 1rem;       /* 16px */
+  --font-size-xl: 1.125rem;   /* 18px */
+  --font-size-2xl: 1.25rem;   /* 20px */
+
+  /* Espaciado (base 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+}
+
+/* ── ÁTOMO: Status Badge ── */
+.vsm-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  background-color: var(--badge-bg, #f1f5f9);
+  color: var(--badge-text, #475569);
+  border: 1px solid var(--badge-border, #e2e8f0);
+  white-space: nowrap;
+}
+
+.vsm-status-badge.active   { --badge-bg: #dcfce7; --badge-text: #166534; --badge-border: #bbf7d0; }
+.vsm-status-badge.warning  { --badge-bg: #fef9c3; --badge-text: #854d0e; --badge-border: #fde047; }
+.vsm-status-badge.danger   { --badge-bg: #fee2e2; --badge-text: #991b1b; --badge-border: #fca5a5; }
+.vsm-status-badge.inactive { --badge-bg: #f1f5f9; --badge-text: #475569; --badge-border: #cbd5e1; }
+.vsm-status-badge.maintenance { --badge-bg: #ffedd5; --badge-text: #9a3412; --badge-border: #fdba74; }
+
+/* ── ÁTOMO: Operator Avatar ── */
+.vsm-card-operator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  flex-shrink: 0;
+  cursor: default;
+  user-select: none;
+}
+
+/* ── ÁTOMO: Variable Row ── */
+.vsm-var-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 0;
+  font-size: var(--font-size-sm);
+  border-bottom: 1px solid #f8fafc;
+  cursor: pointer;
+  transition: background var(--vsm-transition);
+  border-radius: 4px;
+  padding-left: 4px;
+}
+.vsm-var-row:hover { background: #f1f5f9; }
+.vsm-var-row.severity-2 { border-left: 3px solid var(--severity-2); padding-left: 6px; }
+.vsm-var-row.severity-1 { border-left: 3px solid var(--severity-1); padding-left: 6px; }
+.vsm-var-row.severity-0 { border-left: 3px solid var(--severity-0); padding-left: 6px; }
+.vsm-var-name { color: var(--vsm-text-secondary); flex: 1; }
+.vsm-var-value { font-weight: 600; color: var(--vsm-text-primary); margin-left: 8px; }
+
+/* ── ÁTOMO: Alert Icon ── */
+.vsm-alert-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.vsm-alert-icon.warning { color: var(--severity-1); }
+.vsm-alert-icon.danger  { color: var(--severity-2); }
+.vsm-alert-icon.ok      { color: var(--severity-0); }
+
+/* ── MOLÉCULA: Card Header ── */
+.vsm-card-header {
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--vsm-card-radius) var(--vsm-card-radius) 0 0;
+  min-height: 44px;
+}
+.vsm-card-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── MOLÉCULA: Card Footer ── */
+.vsm-card-footer {
+  padding: 4px 10px 6px;
+  background: #f8fafc;
+  border-top: 1px solid var(--vsm-border);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 30px;
+  margin-top: auto;
+  border-radius: 0 0 var(--vsm-card-radius) var(--vsm-card-radius);
+}
+.vsm-alert-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+/* ── MOLÉCULA: Disconnected Overlay ── */
+.vsm-disconnected-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: calc(100% - 44px);
+  background: rgba(241, 245, 249, 0.88);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  border-radius: 0 0 var(--vsm-card-radius) var(--vsm-card-radius);
+  gap: 6px;
+  color: var(--vsm-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+.vsm-disconnected-overlay svg {
+  width: 24px;
+  height: 24px;
+  color: #94a3b8;
+}
+
+/* ── MOLÉCULA: Category Tab ── */
+.vsm-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid var(--vsm-border);
+  border-radius: 10px;
+  box-shadow: var(--vsm-shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  color: var(--vsm-text-primary);
+  white-space: nowrap;
+}
+.vsm-tab:hover { background: #f1f5f9; transform: translateY(-1px); }
+.vsm-tab.active { background: #1e293b; border-color: #1e293b; color: #fff; }
+.vsm-tab.glow-red {
+  border-color: #ef4444;
+  animation: tabGlowRed 1.2s infinite alternate;
+}
+.vsm-tab-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+.vsm-tab-count .up   { color: #22c55e; }
+.vsm-tab-count .down { color: #ef4444; }
+
+@keyframes tabGlowRed {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 12px 2px rgba(239, 68, 68, 0.4); }
+}
+
+/* ── MOLÉCULA: Popover ── */
+.vsm-popover {
+  position: absolute;
+  z-index: 1040;
+  width: 360px;
+  background: #fff;
+  border-radius: var(--vsm-card-radius);
+  box-shadow: var(--vsm-shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.2s ease;
+  border: 1px solid var(--vsm-border);
+}
+.vsm-popover.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.vsm-popover-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--vsm-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vsm-popover-body { padding: 12px 16px; }
+
+/* ── MOLÉCULA: Summary Strip ── */
+.vsm-summary-strip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: #fff;
+  border-radius: var(--vsm-card-radius);
+  box-shadow: var(--vsm-shadow-sm);
+  font-size: var(--font-size-sm);
+}
+.vsm-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vsm-summary-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.vsm-summary-label { color: var(--vsm-text-secondary); }
+.vsm-summary-count { font-weight: 700; color: var(--vsm-text-primary); }
+
+/* ── ORGANISMO: Monitor Card ── */
+.vsm-vehicle-card {
+  border-radius: var(--vsm-card-radius);
+  box-shadow: var(--vsm-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  height: 100%;
+  background: #fff;
+  position: relative;
+  transition: box-shadow var(--vsm-transition), transform var(--vsm-transition);
+  overflow: hidden;
+}
+.vsm-vehicle-card:hover {
+  box-shadow: var(--vsm-shadow-md);
+  transform: translateY(-2px);
+}
+.vsm-card-body {
+  padding: 4px 10px;
+  background: #fff;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 180px;
+}
+.vsm-card-body::-webkit-scrollbar { width: 4px; }
+.vsm-card-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+/* ── ORGANISMO: Category Tabs Bar ── */
+.vsm-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.vsm-tabs-bar::-webkit-scrollbar { display: none; }
+
+/* ── ORGANISMO: Page Header ── */
+.vsm-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 16px;
+  gap: 12px;
+}
+.vsm-page-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--vsm-text-primary);
+  margin: 0;
+}
+.vsm-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── ORGANISMO: View Toggle ── */
+.vsm-view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--vsm-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.vsm-view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  color: var(--vsm-text-secondary);
+  transition: all 0.2s ease;
+}
+.vsm-view-toggle-btn:hover { background: #f1f5f9; }
+.vsm-view-toggle-btn.active { background: #1e293b; color: #fff; }
+.vsm-view-toggle-btn + .vsm-view-toggle-btn { border-left: 1px solid var(--vsm-border); }
+
+/* ── ORGANISMO: Table Container ── */
+.vsm-table-container {
+  background: #fff;
+  border-radius: var(--vsm-card-radius);
+  box-shadow: var(--vsm-shadow-sm);
+  overflow-x: auto;
+}
+.vsm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+.vsm-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+  font-size: var(--font-size-base);
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--vsm-border);
+}
+.vsm-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #f8fafc;
+  color: var(--vsm-text-primary);
+}
+.vsm-table tr:hover td { background: #f8fafc; }
+
+/* ── TEMPLATE: Monitor Page Layout ── */
+.vsm-page {
+  background: var(--vsm-bg);
+  min-height: calc(100vh - 60px);
+  padding: 16px 20px;
+  font-family: var(--font-family);
+}
+
+/* ── Card Grid (GridStack-like) ── */
+.vsm-card-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
